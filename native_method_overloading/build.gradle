@@ -3,12 +3,14 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
 
-
+if (getGradle().getGradleVersion().substring(0, 1).toInteger() >= 8) {
+        namespace "org.arguslab.native_method_overloading"
+    }
 
     defaultConfig {
         applicationId "org.arguslab.native_method_overloading"
         minSdkVersion 23
-        targetSdkVersion 28
+        //noinspection ExpiredTargetSdkVersion targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 

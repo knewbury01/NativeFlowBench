@@ -3,10 +3,14 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
 
+ if (getGradle().getGradleVersion().substring(0, 1).toInteger() >= 8) {
+        namespace "org.arguslab.native_leak"
+    }
+
     defaultConfig {
         applicationId "org.arguslab.native_leak"
         minSdkVersion 23
-        targetSdkVersion 28
+	//noinspection ExpiredTargetSdkVersion targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -32,10 +36,10 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support.constraint:constraint-layout:2.0.0-alpha2'
-    testCompile 'junit:junit:4.12'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha2'
+    testImplementation 'junit:junit:4.12'
 }
